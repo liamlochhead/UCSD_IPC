@@ -19,16 +19,16 @@ jobs:
 
       - name: Set Variables
         run: |
-          IMAGE_NAME=""
-          DOCKERHUB_USERNAME=""
-          echo "IMAGE_NAME=${IMAGE_NAME}" >> $GITHUB_ENV
-          echo "DOCKERHUB_USERNAME=${DOCKERHUB_USERNAME}" >> $GITHUB_ENV
+          IMAGE_NAME="data"
+          DOCKERHUB_USERNAME="ucsdipc"
+          echo "IMAGE_NAME=$data" >> $GITHUB_ENV
+          echo "DOCKERHUB_USERNAME=$ucsdipc" >> $GITHUB_ENV
 
       - name: Build Image
         run: |
-          docker build --rm --force-rm -t "${IMAGE_NAME}" .
+          docker build --rm --force-rm -t "$data" .
           echo -n "Built image size: "
-          docker images "${IMAGE_NAME}" --format "{{.Size}}"
+          docker images "$data" --format "{{.Size}}"
 
       # - name: List Installed Packages
       #   run:  >
@@ -37,8 +37,8 @@ jobs:
 
       - name: Login to Dockerhub
         run: >
-          echo '${{secrets.DOCKERHUB_PASSWORD}}' | docker login
-          -u "${DOCKERHUB_USERNAME}" --password-stdin
+          echo '${{secrets.DOCKER_HUB_PASSWORD}}' | docker login
+          -u "$ucsdipc" --password-stdin
 
       - name: Push to Dockerhub
-        run: docker push "${IMAGE_NAME}"
+        run: docker push "$data"
