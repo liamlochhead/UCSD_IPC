@@ -2,7 +2,7 @@
 # generally use the most recent tag
 
 # base notebook, contains Jupyter and relevant tools
-# ARG BASE_CONTAINER=ucsdets/datahub-base-notebook:2021.2-stable
+ARG BASE_CONTAINER=ucsdets/datahub-base-notebook:2021.2-stable
 
 # data science notebook
 # https://hub.docker.com/repository/docker/ucsdets/datascience-notebook/tags
@@ -10,7 +10,6 @@
 
 # scipy/machine learning (tensorflow, pytorch)
 # https://hub.docker.com/repository/docker/ucsdets/scipy-ml-notebook/tags
-ARG BASE_CONTAINER=nipreps/fmriprep
 
 FROM $BASE_CONTAINER
 
@@ -18,28 +17,28 @@ LABEL maintainer="Liam Lochhead <llochhead@health.ucsd.edu>"
 
 
 # 2) change to root to install packages
-#***USER root
+USER root
 
-#***RUN apt-get -y install htop
+RUN apt-get -y install htop
 
 
 
 # 3) install packages using notebook user
-####USER jovyan
+USER jovyan
 
 # RUN conda install -y scikit-learn
 
-#***RUN pip install --no-cache-dir networkx scipy
+RUN pip install --no-cache-dir networkx scipy
 
 
 # INSTALL FMRIPREP
-#***RUN apt-get update && apt-get install -y docker.io 
-#***RUN pip install --user --upgrade fmriprep-docker
+RUN apt-get update && apt-get install -y docker.io 
+RUN pip install --user --upgrade fmriprep-docker
 #RUN pip install fslpy
 
 
 # Override command to disable running jupyter notebook at launch
-# CMD ["/bin/bash"]
+CMD ["/bin/bash"]
 
 
 
