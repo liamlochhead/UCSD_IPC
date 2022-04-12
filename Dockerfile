@@ -16,8 +16,6 @@ FROM $BASE_CONTAINER
 
 LABEL maintainer="UC San Diego ITS/ETS <ets-consult@ucsd.edu>"
 
-#****installing fmriprep
-ADD nipreps/fmriprep:<latest-version>
 
 # 2) change to root to install packages
 USER root
