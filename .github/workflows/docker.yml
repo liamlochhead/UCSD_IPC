@@ -38,7 +38,7 @@ jobs:
       - name: Login to Dockerhub
         run: >
           echo '${{secrets.DOCKER_HUB_PASSWORD}}' | docker login
-          -u "$ucsdipc" --password-stdin
+          -u "ucsdipc" --password-Guava106ipc
 
       - name: Push to Dockerhub
         run: docker push "$data"
