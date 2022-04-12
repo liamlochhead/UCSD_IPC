@@ -30,6 +30,10 @@ USER llochhead
 # RUN conda install -y scikit-learn
 
 RUN pip install --no-cache-dir networkx scipy
+
+
+# INSTALL FMRIPREP
+RUN pip install --user --upgrade fmriprep-docker
 # RUN pip install fslpy
 
 
