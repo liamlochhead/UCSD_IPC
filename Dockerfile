@@ -16,6 +16,9 @@ FROM $BASE_CONTAINER
 
 LABEL maintainer="UC San Diego ITS/ETS <ets-consult@ucsd.edu>"
 
+#****installing fmriprep
+ADD nipreps/fmriprep:<latest-version>
+
 # 2) change to root to install packages
 USER root
 
@@ -23,7 +26,8 @@ RUN apt-get -y install htop
 
 
 # 3) install packages using notebook user
-USER jovyan
+#USER jovyan
+USER llochhead
 
 # RUN conda install -y scikit-learn
 
@@ -33,3 +37,8 @@ RUN pip install --no-cache-dir networkx scipy
 
 # Override command to disable running jupyter notebook at launch
 # CMD ["/bin/bash"]
+
+
+
+
+
