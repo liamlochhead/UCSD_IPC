@@ -20,9 +20,9 @@ jobs:
       - name: Set Variables
         run: |
           IMAGE_NAME="data"
-          DOCKERHUB_USERNAME="ucsdipc"
+          DOCKER_HUB_USERNAME="ucsdipc"
           echo "IMAGE_NAME=$data" >> $GITHUB_ENV
-          echo "DOCKERHUB_USERNAME=$ucsdipc" >> $GITHUB_ENV
+          echo "DOCKER_HUB_USERNAME=$ucsdipc" >> $GITHUB_ENV
 
       - name: Build Image
         run: |
@@ -36,9 +36,10 @@ jobs:
       #     conda list
 
       - name: Login to Dockerhub
-        run: >
-          echo '${{secrets.DOCKER_HUB_PASSWORD}}' | docker login
-          -u "ucsdipc" --password-stdin
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKER_HUB_USERNAME }}
+          password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
 
       - name: Push to Dockerhub
         run: docker push "$data"
