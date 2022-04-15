@@ -34,7 +34,7 @@ RUN export DEBIAN_FRONTEND=noninteractive && apt-get update && \
     apt-get clean && apt-get autoremove
 
 # Run mpm to install MATLAB in the target location and delete the mpm installation afterwards
-RUN wget -q https://urldefense.proofpoint.com/v2/url?u=https-3A__www.mathworks.com_mpm_glnxa64_mpm&d=DwIGAg&c=-35OiAkTchMrZOngvJPOeA&r=Wpdz_JHAO-h9QnP0tZk8OugywBv6yl5B-hTwJGFhjKs&m=xBuO3K3xWk0VlJ5BF3Xao-ofVg7lMKSmwlqmjnvFG1WX23It_h2nEeWSR0Jyv7jS&s=yjLYDtwTidGruTMMah7_zyIQB1sGAea0QdLnWxq_nqo&e=  && \ 
+RUN wget -q https://www.mathworks.com/mpm/glnxa64/mpm && \ 
     chmod +x mpm && \
     ./mpm install \
         --release=${MATLAB_RELEASE} \
